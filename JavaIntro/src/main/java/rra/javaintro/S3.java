@@ -7,22 +7,44 @@ import java.util.Random;
 
 public class S3 {
     public static void main(String[] args) {
+//        1 Объявить два списка список ArrayList,
+//        в каждый добавить по 20 случайных чисел.
+//        Удалить из первого списка элементы отсутствующие во втором списке.
+//        Отсортировать первый список методом sort класса Collections.
+//        2 * Отсортировать второй список методом sort списка и
+//        компаратором по уменьшению.
+//        3 **Отсортировать первый список пузырьковой сортировкой самостоятельно,
+//        без использования доп методов и классов.
 
-        ArrayList<Integer> al = new ArrayList<>();
+        ArrayList<Integer> al1 = new ArrayList<>();
+        ArrayList<Integer> al2 = new ArrayList<>();
+
         Random rnd = new Random();
 
-        int size = rnd.nextInt(20);
+        int size = 20;
+        int bound = 40;
         for (int i = 0; i < size; i++) {
-            int value = rnd.nextInt(100);
-            al.add(value);
+            al1.add(rnd.nextInt(bound));
+            al2.add(rnd.nextInt(bound));
         }
+        System.out.println("\nпервый массив:");
+        al1.forEach(e -> System.out.print(e + ", "));
+        System.out.println("\nвторой массив:");
+        al2.forEach(e -> System.out.print(e + ", "));
 
-        al.sort((t0,t1)->t1-t0);
-//        Collections.sort(al);       // отсортировать
-//        Collections.reverse(al); // сделать по убыванию
-        al.forEach(e -> System.out.print(e + ", "));
+        al1.retainAll(al2); // оставить общие элементы в al1
+//        al1.removeAll(al2); // удалить общие элементы из al1
 
+        System.out.println("\nпервый массив с совпадающими значениями:");
+        al1.forEach(e -> System.out.print(e + ", "));
 
+        Collections.sort(al1);
+        al2.sort((t0,t1)->t1-t0);
 
+        System.out.println("\nвозрастающий первый массив с совпадающими значениями:");
+
+        al1.forEach(e -> System.out.print(e + ", "));
+        System.out.println("\nубывающий второй массив:");
+        al2.forEach(e -> System.out.print(e + ", "));
     }
 }
