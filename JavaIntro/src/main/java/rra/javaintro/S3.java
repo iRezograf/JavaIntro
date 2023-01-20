@@ -16,13 +16,13 @@ public class S3 {
 //        3 **Отсортировать первый список пузырьковой сортировкой самостоятельно,
 //        без использования доп методов и классов.
 
-        ArrayList<Integer> al1 = new ArrayList<>();
-        ArrayList<Integer> al2 = new ArrayList<>();
+        int size = 20;
+        int bound = 40;
+        ArrayList<Integer> al1 = new ArrayList<>(size);
+        ArrayList<Integer> al2 = new ArrayList<>(size);
 
         Random rnd = new Random();
 
-        int size = 20;
-        int bound = 40;
         for (int i = 0; i < size; i++) {
             al1.add(rnd.nextInt(bound));
             al2.add(rnd.nextInt(bound));
