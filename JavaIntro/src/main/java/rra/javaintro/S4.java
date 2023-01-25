@@ -70,29 +70,12 @@ public class S4 {
         }
 
         System.out.println("\nОтсортированный по возрасту исходный список:");
-//        LinkedList<Integer> ind = bulbSortString(family, index);
-        LinkedList<Integer> ind = bulbSortInteger(age, index, (a,b)-> {return a<b;} );
+        LinkedList<Integer> ind = bulbSortString(family, index, (a,b)-> a.compareTo(b) < 0 );
+//        LinkedList<Integer> ind = bulbSortInteger(age, index, (a,b)-> a>b );
         for (int i = 0; i < str.length; i++) {
             System.out.println(str[ind.get(i)]);
         }
     }
-
-    public  static LinkedList<Integer> bulbSortString( ArrayList<String> comparedArray, LinkedList<Integer> indexComparedArray){
-        ArrayList<String> ca = new ArrayList<>(comparedArray);
-        LinkedList<Integer> ind = new LinkedList<>(indexComparedArray);
-        Integer bufferForExchange;
-        for (int i = 0; i < ca.size()-1; i++) {
-            for (int j = 0; j < ca.size()-i-1; j++) {
-                if (ca.get(ind.get(j)).compareTo(ca.get(ind.get(j+1))) > 0 ) {
-                    bufferForExchange = ind.get(j);
-                    ind.set(j,ind.get(j+1));
-                    ind.set(j+1, bufferForExchange);
-                }
-            }
-        }
-        return  ind;
-    }
-
     public  static LinkedList<Integer> bulbSortInteger(ArrayList<Integer> comparedArray,
                                                        LinkedList<Integer> indexComparedArray,
                                                        BiFunction<Integer, Integer, Boolean> compare){
@@ -101,7 +84,6 @@ public class S4 {
         Integer bufferForExchange;
         for (int i = 0; i < ca.size()-1; i++) {
             for (int j = 0; j < ca.size()-i-1; j++) {
-//                if (ca.get(ind.get(j)).compareTo(ca.get(ind.get(j+1))) > 0 ) {
                 if ( compare.apply(ca.get(ind.get(j)),ca.get(ind.get(j+1))) ) {
                     bufferForExchange = ind.get(j);
                     ind.set(j,ind.get(j+1));
@@ -111,6 +93,26 @@ public class S4 {
         }
         return  ind;
     }
+
+    public  static LinkedList<Integer> bulbSortString( ArrayList<String> comparedArray,
+                                                       LinkedList<Integer> indexComparedArray,
+                                                       BiFunction<String, String, Boolean> compare){
+        ArrayList<String> ca = new ArrayList<>(comparedArray);
+        LinkedList<Integer> ind = new LinkedList<>(indexComparedArray);
+        Integer bufferForExchange;
+        for (int i = 0; i < ca.size()-1; i++) {
+            for (int j = 0; j < ca.size()-i-1; j++) {
+                if ( compare.apply(ca.get(ind.get(j)),ca.get(ind.get(j+1))) ) {
+                    bufferForExchange = ind.get(j);
+                    ind.set(j,ind.get(j+1));
+                    ind.set(j+1, bufferForExchange);
+                }
+            }
+        }
+        return  ind;
+    }
+
+
 
     public static void printWithIndex(ArrayList<String> comparedArray, LinkedList<Integer> indexComparedArray) {
         for (Integer i: indexComparedArray
