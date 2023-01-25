@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class S4 {
 //        1.Сохранить в файл строку и загрузить из файла строку с выводом в консоль,
@@ -69,7 +71,7 @@ public class S4 {
 
         System.out.println("\nОтсортированный по возрасту исходный список:");
 //        LinkedList<Integer> ind = bulbSortString(family, index);
-        LinkedList<Integer> ind = bulbSortInteger(age, index);
+        LinkedList<Integer> ind = bulbSortInteger(age, index, (a,b)-> {return a<b;} );
         for (int i = 0; i < str.length; i++) {
             System.out.println(str[ind.get(i)]);
         }
@@ -91,13 +93,16 @@ public class S4 {
         return  ind;
     }
 
-    public  static LinkedList<Integer> bulbSortInteger( ArrayList<Integer> comparedArray, LinkedList<Integer> indexComparedArray){
+    public  static LinkedList<Integer> bulbSortInteger(ArrayList<Integer> comparedArray,
+                                                       LinkedList<Integer> indexComparedArray,
+                                                       BiFunction<Integer, Integer, Boolean> compare){
         ArrayList<Integer> ca = new ArrayList<>(comparedArray);
         LinkedList<Integer> ind = new LinkedList<>(indexComparedArray);
         Integer bufferForExchange;
         for (int i = 0; i < ca.size()-1; i++) {
             for (int j = 0; j < ca.size()-i-1; j++) {
-                if (ca.get(ind.get(j)).compareTo(ca.get(ind.get(j+1))) > 0 ) {
+//                if (ca.get(ind.get(j)).compareTo(ca.get(ind.get(j+1))) > 0 ) {
+                if ( compare.apply(ca.get(ind.get(j)),ca.get(ind.get(j+1))) ) {
                     bufferForExchange = ind.get(j);
                     ind.set(j,ind.get(j+1));
                     ind.set(j+1, bufferForExchange);
