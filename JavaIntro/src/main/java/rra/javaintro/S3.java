@@ -1,9 +1,6 @@
 package rra.javaintro;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 public class S3 {
     public static void main(String[] args) {
@@ -39,6 +36,8 @@ public class S3 {
         al1.forEach(e -> System.out.print(e + ", "));
 
         Collections.sort(al1);
+//        Collections.reverse(al1); // рвзворачивает массив
+
         al2.sort((t0,t1)->t1-t0);
 
         System.out.println("\nвозрастающий первый массив с совпадающими значениями:");
