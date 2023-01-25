@@ -69,8 +69,9 @@ public class S4 {
             System.out.println("");
         }
 
-        System.out.println("\nОтсортированный по возрасту исходный список:");
+        System.out.println("\nОтсортированный по фамилиям  исходный список:");
         LinkedList<Integer> ind = bulbSortString(family, index, (a,b)-> a.compareTo(b) < 0 );
+        System.out.println("\nОтсортированный по возрасту исходный список:");
 //        LinkedList<Integer> ind = bulbSortInteger(age, index, (a,b)-> a>b );
         for (int i = 0; i < str.length; i++) {
             System.out.println(str[ind.get(i)]);
