@@ -23,7 +23,7 @@ public class S4 {
         ArrayList<String> name = new ArrayList<>();
         ArrayList<String> soname = new ArrayList<>();
         ArrayList<Integer> age = new ArrayList<>();
-        ArrayList<Boolean> gender = new ArrayList<>();
+        ArrayList<String> gender = new ArrayList<>();
         LinkedList<Integer> index = new LinkedList<>();
 
         String text = "";
@@ -51,6 +51,7 @@ public class S4 {
 
         String[] str = text.split("\n");
 
+            System.out.println("Исходный список в формате Фамилия И.О. возраст пол:");
         for (int i = 0; i < str.length; i++) {
             String[] sb = str[i].split(" ");
             family.add(sb[0]);
@@ -60,10 +61,13 @@ public class S4 {
 //            soname.add(sb[2].charAt(0) + ".");
             age.add(Integer.valueOf(sb[3]));
 //            booleanGender = (sb[4] == "M" ? true : false);
-            gender.add(sb[4].equals("Ж") ? true : false);
+            gender.add(sb[4]);
             index.add(i);
+            System.out.printf("%-15s %s.%s. %s %s", sb[0], sb[1].charAt(0), sb[2].charAt(0), sb[3], sb[4]);
+            System.out.println("");
         }
 
+        System.out.println("\nОтсортированный по возрасту исходный список:");
 //        LinkedList<Integer> ind = bulbSortString(family, index);
         LinkedList<Integer> ind = bulbSortInteger(age, index);
         for (int i = 0; i < str.length; i++) {
