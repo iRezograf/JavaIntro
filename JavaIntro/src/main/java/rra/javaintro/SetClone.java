@@ -1,9 +1,7 @@
 package rra.javaintro;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SetClone {
@@ -43,10 +41,20 @@ public class SetClone {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        this.setClone.forEach((key, value) -> sb.append(key).append(" "));
-        return sb.toString();
+        return this.setClone.entrySet().stream()
+                .map(e -> e.getKey() + " ")
+                .collect(Collectors.joining());
     }
-
 }
+
+
+
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        this.setClone.forEach((key, value) -> sb.append(key).append(" "));
+//        return sb.toString();
+//    }
+
+
 

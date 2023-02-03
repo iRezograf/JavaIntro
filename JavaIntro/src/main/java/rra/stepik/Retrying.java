@@ -16,8 +16,6 @@ final class RetryUtils {
     private RetryUtils() {
         };
 
-    private void run() {
-    }
 
     public static int retryAction(
             Runnable action, int maxAttempts, long delayBeforeRetryMs) {
@@ -47,9 +45,8 @@ class Retrying {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(in);
-//        RetryUtils.retryAction(out.println(scanner.nextLine())),
-//                MAX_ATTEMPTS,
-//                DELAY_MS);
+
+        RetryUtils.retryAction(() -> System.out.println(scanner.nextLine()), MAX_ATTEMPTS, DELAY_MS);
     }
 }
 
