@@ -31,19 +31,17 @@ class TaskManager {
      * Returns a supplier to access tasks in the right order according to their priority.
      * If all the queues are empty, it returns null.
      */
+
     public Supplier<Task> getTaskSupplier() {
-        return () -> null; // write your code here
-
-//        Supplier<Task> taskSupplier = manager.getTaskSupplier();
-//        Task task;
-//        while ((task = taskSupplier.get()) != null) {
-//            System.out.println(task.getNumber());
-//        }
-
-//        Queue<Integer> list = new ArrayDeque<>(List.of(1, 2, 3, 4));
-//        Supplier<Integer> supplier = list::poll;
-//
-//        System.out.println(supplier.get()); // 1
+        Queue<Task> list = new ArrayDeque<>();
+        for (Queue<Task> q : taskQueues
+        ) {
+            for (Task t : q
+            ) {
+                list.add(t);
+            }
+        }
+        return list::poll;
     }
 }
 
@@ -90,10 +88,3 @@ class TasksHandling {
         }
     }
 }
-
-/***
-    public static <T> List<T> filter(List<T> elems, Predicate<T> predicate) {
-        return elems.stream()
-                .filter(predicate)
-                .collect(Collectors.toList());
- ***/
